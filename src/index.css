@@ -8,5 +8,15 @@ main {
 }
 
 img {
+  width: 500px;
+  height: 500px;
   image-rendering: pixelated;
+}
+
+img.hidden {
+  filter: brightness(0);
+}
+
+form {
+  display: flex;
 }
