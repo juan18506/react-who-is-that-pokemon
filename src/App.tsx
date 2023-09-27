@@ -1,24 +1,7 @@
-import {FormEvent, useEffect, useState} from "react";
+import {usePokemon} from "./hooks";
 
-import Api from "./api";
-import {Pokemon} from "./types";
-
-function App() {
-  const [pokemon, setPokemon] = useState<Pokemon>();
-  const [isLoading, setIsLoading] = useState<Boolean>(true);
-  const [isImageHidden, setIsImageHidden] = useState<Boolean>(true);
-
-  useEffect(() => {
-    Api.random().then((newPokemon) => {
-      setPokemon(newPokemon);
-      setIsLoading(false);
-    });
-  }, []);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsImageHidden(false);
-  };
+const App = () => {
+  const {pokemon, isLoading, isImageHidden, handleGuess} = usePokemon();
 
   return (
     <main>
@@ -28,15 +11,15 @@ function App() {
         <img alt="A pokemon" className={isImageHidden ? "hidden" : ""} src={pokemon?.image} />
       )}
 
-      <form onSubmit={handleSubmit}>
-        <input className="nes-input" id="guess-field" type="text" />
+      <form onSubmit={handleGuess}>
+        <input className="nes-input" id="guess-field" name="guess" type="text" />
 
-        <button className="nes-btn is-primary" type="submit">
+        <button className="nes-btn is-primary" disabled={isLoading} type="submit">
           Guess
         </button>
       </form>
     </main>
   );
-}
+};
 
 export default App;
