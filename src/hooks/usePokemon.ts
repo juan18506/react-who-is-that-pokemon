@@ -1,4 +1,4 @@
-import {FormEvent, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 
 import Api from "../api";
 import {Pokemon} from "../types";
@@ -6,7 +6,7 @@ import {Pokemon} from "../types";
 export const usePokemon = () => {
   const [pokemon, setPokemon] = useState<Pokemon>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isImageHidden, setIsImageHidden] = useState<boolean>(true);
+  const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean>(false);
 
   useEffect(() => {
     Api.random().then((newPokemon) => {
@@ -15,14 +15,10 @@ export const usePokemon = () => {
     });
   }, []);
 
-  const handleGuess = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-
-    const {guess} = Object.fromEntries(new FormData(event.currentTarget));
-
+  const handleGuess = (guess: string): void => {
     if (guess === pokemon?.name) {
       alert("correct!");
-      setIsImageHidden(false);
+      setIsCorrectAnswer(true);
     } else {
       alert("incorrect :(");
     }
@@ -31,7 +27,7 @@ export const usePokemon = () => {
   return {
     pokemon,
     isLoading,
-    isImageHidden,
+    isCorrectAnswer,
     handleGuess,
   };
 };
