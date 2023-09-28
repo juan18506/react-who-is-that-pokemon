@@ -21,17 +21,19 @@ export const PokemonForm: React.VFC<Props> = ({isLoading, onUserGuess, onNewGame
     <form onSubmit={handleFormSubmit}>
       <input ref={userInput} className="nes-input" name="guess" type="text" />
 
-      <button
-        className={`nes-btn ${!isLoading ? "is-primary" : "is-disabled"}`}
-        disabled={isLoading}
-        type="submit"
-      >
-        Guess
-      </button>
+      <div className="buttons">
+        <button
+          className={`nes-btn ${!isLoading ? "is-primary" : "is-disabled"}`}
+          disabled={isLoading}
+          type="submit"
+        >
+          Guess
+        </button>
 
-      <button className="nes-btn" type="button" onClick={onNewGame}>
-        Play again
-      </button>
+        <button className="nes-btn" type="button" onClick={onNewGame}>
+          Play again
+        </button>
+      </div>
     </form>
   );
 };

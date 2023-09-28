@@ -2,6 +2,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   min-height: 100vh;
   flex-direction: column;
   padding: 24px;
@@ -21,7 +22,34 @@ form {
   display: flex;
 }
 
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
 .counters {
   text-align: center;
   margin: 3em 0;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.25rem;
+    white-space: nowrap;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 425px) {
+  h1 {
+    font-size: 1.05rem;
+  }
 }
