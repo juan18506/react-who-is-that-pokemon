@@ -19,6 +19,8 @@ export const usePokemon = () => {
   };
 
   const handleUserGuess = (guess: string): void => {
+    guess = guess.toLowerCase().trim();
+
     if (guess === pokemon?.name) {
       alert("correct!");
       setIsCorrectAnswer(true);
