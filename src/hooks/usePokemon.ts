@@ -4,7 +4,7 @@ import Api from "../api";
 import {Pokemon} from "../types";
 
 export const usePokemon = () => {
-  const [pokemon, setPokemon] = useState<Pokemon>();
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean>(false);
 

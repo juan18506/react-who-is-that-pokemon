@@ -1,6 +1,4 @@
-import React from "react";
-
-import {useForm} from "../hooks";
+import React, {useRef} from "react";
 
 interface Props {
   isLoading: boolean;
@@ -9,23 +7,20 @@ interface Props {
 }
 
 export const PokemonForm: React.VFC<Props> = ({isLoading, onUserGuess, onNewGame}) => {
-  const {guess, handleInputChange, handleResetForm} = useForm();
+  const userInput = useRef<HTMLInputElement | null>(null);
 
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    onUserGuess(guess);
-    handleResetForm();
+
+    if (!userInput.current) return;
+    onUserGuess(userInput.current.value);
+    userInput.current.value = "";
   };
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <input
-        className="nes-input"
-        name="guess"
-        type="text"
-        value={guess}
-        onChange={handleInputChange}
-      />
+      <input ref={userInput} className="nes-input" name="guess" type="text" />
+
       <button
         className={`nes-btn ${!isLoading ? "is-primary" : "is-disabled"}`}
         disabled={isLoading}

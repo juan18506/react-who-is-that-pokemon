@@ -14,8 +14,8 @@ const App = () => {
     <main>
       <h1>Who&apos;s that Pokemon?</h1>
 
-      {!isLoading && (
-        <img alt="A pokemon" className={!isCorrectAnswer ? "hidden" : ""} src={pokemon?.image} />
+      {pokemon && (
+        <img alt="A pokemon" className={!isCorrectAnswer ? "hidden" : ""} src={pokemon.image} />
       )}
 
       <PokemonForm isLoading={isLoading} onNewGame={handleNewGame} onUserGuess={handleUserGuess} />
