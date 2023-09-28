@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 import Api from "../api";
 import {Pokemon} from "../types";
@@ -8,14 +8,17 @@ export const usePokemon = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isCorrectAnswer, setIsCorrectAnswer] = useState<boolean>(false);
 
-  useEffect(() => {
+  const handleNewGame = (): void => {
+    setIsLoading(true);
+    setIsCorrectAnswer(false);
+
     Api.random().then((newPokemon) => {
       setPokemon(newPokemon);
       setIsLoading(false);
     });
-  }, []);
+  };
 
-  const handleGuess = (guess: string): void => {
+  const handleUserGuess = (guess: string): void => {
     if (guess === pokemon?.name) {
       alert("correct!");
       setIsCorrectAnswer(true);
@@ -28,6 +31,7 @@ export const usePokemon = () => {
     pokemon,
     isLoading,
     isCorrectAnswer,
-    handleGuess,
+    handleUserGuess,
+    handleNewGame,
   };
 };

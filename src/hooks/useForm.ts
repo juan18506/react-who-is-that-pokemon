@@ -1,4 +1,4 @@
-import {ChangeEvent, useState} from "react";
+import {useState} from "react";
 
 const form = {
   guess: "",
@@ -6,7 +6,7 @@ const form = {
 
 export const useForm = (initialForm = form) => {
   const [formState, setFormState] = useState(initialForm);
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const {name, value} = event.target;
 
     setFormState({
