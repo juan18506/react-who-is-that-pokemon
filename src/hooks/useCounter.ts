@@ -7,8 +7,18 @@ export const useCounter = (initialValue: number = 0) => {
     setCounter((current) => current + value);
   };
 
+  const decrement = (value: number = 1): void => {
+    setCounter((current) => current - value);
+  };
+
+  const reset = (): void => {
+    setCounter(initialValue);
+  };
+
   return {
     counter,
     increment,
+    decrement,
+    reset,
   };
 };
