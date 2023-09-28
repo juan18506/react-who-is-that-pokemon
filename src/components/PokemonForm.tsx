@@ -29,7 +29,7 @@ export const PokemonForm: React.VFC<Props> = ({isLoading, onUserGuess, onNewGame
         Guess
       </button>
 
-      <button className="nes-btn is-secondary" type="button" onClick={onNewGame}>
+      <button className="nes-btn" type="button" onClick={onNewGame}>
         Play again
       </button>
     </form>

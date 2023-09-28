@@ -20,3 +20,8 @@ img.hidden {
 form {
   display: flex;
 }
+
+.counters {
+  text-align: center;
+  margin: 3em 0;
+}
